@@ -1,0 +1,8 @@
+# Ignore virtual environments
+keylogger_env/
+
+# Ignore log files
+*.log
+
+# Ignore pycache
+__pycache__/
