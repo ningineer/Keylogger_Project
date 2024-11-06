@@ -4,6 +4,10 @@ Project Description
 
 This project is a Python-based keylogger designed to capture keystrokes and store them in a local text file. It was created for learning and exploration purposes, and it demonstrates the use of libraries and logging functionality in Python.
 
+**Disclaimer**
+
+This project is intended strictly for educational and testing purposes. Unauthorized or malicious use of this script for tracking keystrokes or other unauthorized activities may violate privacy laws and is strictly prohibited. By using this project, you agree to adhere to all applicable laws and use this code responsibly. The author does not endorse or condone the use of this script for any unlawful or unauthorized purposes.
+
 Learning Objectives
 
 The goals for this project included:
