@@ -43,7 +43,7 @@ The goals for this project included:
 
   ### 4. Install dependencies:
 
-    pip install pynput
+      pip install pynput
 
 ## Usage
 
